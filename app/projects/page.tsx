@@ -69,7 +69,7 @@ function ProjectBlueprint({ type }: { type: 'tower' | 'hotel' | 'villa' }) {
 
 export default function ProjectsPage() {
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
+    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       
@@ -83,7 +83,7 @@ export default function ProjectsPage() {
           <h1 style={{ fontSize: 'calc(2.5rem + 1vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>
             Selected Projects Portfolio
           </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.7', fontWeight: 300 }}>
+          <p style={{ fontSize: '1.1rem', color: '#ccc', lineHeight: '1.7', fontWeight: 300 }}>
             We collaborate with premier architects, interior designers, builders, and villa owners across North Bengal and Sikkim. Inspect our portfolio of tailored uPVC windows, invisible safety installations, and integrated balcony utility systems.
           </p>
         </div>
@@ -95,8 +95,8 @@ export default function ProjectsPage() {
             <ProjectBlueprint type="tower" />
             <div style={{ padding: '2.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Siliguri</span>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>Luxury Penthouse Apartment</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Luxury Penthouse Apartment</h3>
+              <p style={{ fontSize: '0.95rem', color: '#888', marginBottom: '2rem', lineHeight: '1.6' }}>
                 Full-bleed charcoal-grey uPVC sliding doors integrated with thin vertical invisible safety grills on the 14th-floor penthouse balconies of a luxury high-rise development.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -112,8 +112,8 @@ export default function ProjectsPage() {
             <ProjectBlueprint type="hotel" />
             <div style={{ padding: '2.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Gangtok</span>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>Himalayan Boutique Resort</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Himalayan Boutique Resort</h3>
+              <p style={{ fontSize: '0.95rem', color: '#888', marginBottom: '2rem', lineHeight: '1.6' }}>
                 Customized heavy-duty uPVC window configurations built for thermal efficiency and wind-resistance, installed across cascading resort luxury suites overlooking Gangtok Valley.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -129,8 +129,8 @@ export default function ProjectsPage() {
             <ProjectBlueprint type="villa" />
             <div style={{ padding: '2.5rem' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>North Bengal</span>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: 'var(--text-primary)' }}>Modern Tea Estate Villa</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Modern Tea Estate Villa</h3>
+              <p style={{ fontSize: '0.95rem', color: '#888', marginBottom: '2rem', lineHeight: '1.6' }}>
                 A complete utility and security design combining custom sliding insect screens, heavy-load pulley drying systems, and glass balcony panels for a private tea estate villa.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -143,9 +143,9 @@ export default function ProjectsPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ textAlign: 'center', borderTop: '1px solid var(--border-light)', paddingTop: '4rem' }}>
+        <div style={{ textAlign: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '4rem' }}>
           <h3 style={{ fontSize: '1.8rem', fontWeight: 400, marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>Have a project in mind?</h3>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem auto' }}>
+          <p style={{ color: '#888', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem auto' }}>
             Whether it is a private residential home, a new commercial build, or a renovation, our specialists can collaborate on structural specifications.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>

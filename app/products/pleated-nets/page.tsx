@@ -25,7 +25,7 @@ function PleatedNetDiagram() {
   return (
     <div className="tech-svg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
       <div>
-        <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>Slide to Deploy Mesh</h4>
+        <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff' }}>Slide to Deploy Mesh</h4>
         <input 
           type="range" 
           min="0" 
@@ -37,11 +37,11 @@ function PleatedNetDiagram() {
       </div>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
-          <rect x="10" y="10" width="330" height="220" fill="none" stroke="var(--border-medium)" strokeWidth="2" />
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <rect x="10" y="10" width="330" height="220" fill="none" stroke="#333" strokeWidth="2" />
           
-          <line x1="10" y1="20" x2="340" y2="20" stroke="var(--text-muted)" strokeWidth="4" />
-          <line x1="10" y1="220" x2="340" y2="220" stroke="var(--text-muted)" strokeWidth="4" />
+          <line x1="10" y1="20" x2="340" y2="20" stroke="#222" strokeWidth="4" />
+          <line x1="10" y1="220" x2="340" y2="220" stroke="#222" strokeWidth="4" />
           
           <g transform="translate(10, 20)">
             <path 
@@ -59,7 +59,7 @@ function PleatedNetDiagram() {
             y1="20" 
             x2={10 + currentWidth} 
             y2="220" 
-            stroke="var(--text-primary)" 
+            stroke="#fff" 
             strokeWidth="4" 
           />
           <circle 
@@ -67,14 +67,14 @@ function PleatedNetDiagram() {
             cy="120" 
             r="8" 
             fill="var(--accent)" 
-            stroke="var(--bg-primary)" 
+            stroke="#0a0a0a" 
             strokeWidth="2" 
           />
           
-          <text x="25" y="200" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
+          <text x="25" y="200" fill="#555" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
             TENSION GUIDE WIRE ACTIVE
           </text>
-          <text x="325" y="200" textAnchor="end" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
+          <text x="325" y="200" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
             MESH EXPANSION: {position}%
           </text>
         </svg>
@@ -91,7 +91,7 @@ export default function PleatedNetsPage() {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
+    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       

@@ -26,29 +26,29 @@ function CeilingHangerDiagram() {
       </div>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
-          <rect x="20" y="15" width="310" height="8" fill="#c8d6d9" rx="2" />
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <rect x="20" y="15" width="310" height="8" fill="#222" rx="2" />
           
-          <circle cx={pulleyX1} cy="30" r="10" fill="none" stroke="var(--text-secondary)" strokeWidth="2" />
+          <circle cx={pulleyX1} cy="30" r="10" fill="none" stroke="#444" strokeWidth="2" />
           <circle cx={pulleyX1} cy="30" r="4" fill="var(--accent)" />
           
-          <circle cx={pulleyX2} cy="30" r="10" fill="none" stroke="var(--text-secondary)" strokeWidth="2" />
+          <circle cx={pulleyX2} cy="30" r="10" fill="none" stroke="#444" strokeWidth="2" />
           <circle cx={pulleyX2} cy="30" r="4" fill="var(--accent)" />
 
-          <rect x={gearX - 10} y="150" width="20" height="30" fill="var(--border-medium)" rx="3" />
+          <rect x={gearX - 10} y="150" width="20" height="30" fill="#222" rx="3" />
           <circle cx={gearX} cy="165" r="6" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
           <line x1={gearX} y1="165" x2={gearX + 8} y2="157" stroke="var(--accent)" strokeWidth="2" />
 
           <path 
             d={`M ${gearX} 150 L ${pulleyX2} 30 L ${pulleyX1} 30 L ${pulleyX1} ${poleY}`} 
             fill="none" 
-            stroke="#7a9297" 
+            stroke="#aaa" 
             strokeWidth="1.2" 
           />
           <path 
             d={`M ${gearX} 150 L ${pulleyX2} 30 L ${pulleyX2} ${poleY}`} 
             fill="none" 
-            stroke="#7a9297" 
+            stroke="#aaa" 
             strokeWidth="1.2" 
           />
 
@@ -57,15 +57,15 @@ function CeilingHangerDiagram() {
           
           {[60, 110, 160, 210].map((xOffset) => (
             <g key={xOffset} transform={`translate(${xOffset}, ${poleY + 8})`}>
-              <path d="M 10 0 L 0 10 L 20 10 Z" fill="none" stroke="var(--text-muted)" strokeWidth="1" />
-              <path d="M 0 10 L 4 40 L 16 40 L 20 10 Z" fill="rgba(33, 84, 97, 0.05)" stroke="var(--border-medium)" strokeWidth="0.5" />
+              <path d="M 10 0 L 0 10 L 20 10 Z" fill="none" stroke="#555" strokeWidth="1" />
+              <path d="M 0 10 L 4 40 L 16 40 L 20 10 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
             </g>
           ))}
 
-          <text x="320" y="195" textAnchor="end" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)">
+          <text x="320" y="195" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
             MECHANICAL ADVANTAGE: 2:1
           </text>
-          <text x="320" y="210" textAnchor="end" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)">
+          <text x="320" y="210" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
             ELEVATION STATS: {120 - heightOffset}mm HEIGHT
           </text>
         </svg>
@@ -82,7 +82,7 @@ export default function CeilingHangersPage() {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
+    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       

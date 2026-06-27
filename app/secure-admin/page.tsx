@@ -191,7 +191,7 @@ export default function SecureAdmin() {
   // Loading State
   if (isAuthenticated === null) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-primary)' }}>
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0a0a0a' }}>
         <div className="spinner"></div>
       </div>
     );
@@ -205,12 +205,12 @@ export default function SecureAdmin() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'var(--bg-primary)',
+        backgroundColor: '#0a0a0a',
         padding: '1.5rem'
       }}>
         <div className="glass-panel" style={{ width: '100%', maxWidth: '420px', padding: '3rem 2.5rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)', letterSpacing: '0.05em' }}>
+            <h1 style={{ fontSize: '1.8rem', fontWeight: 600, color: '#fff', fontFamily: 'var(--font-sans)', letterSpacing: '0.05em' }}>
               YUVAL ADMIN
             </h1>
             <p style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
@@ -266,10 +266,10 @@ export default function SecureAdmin() {
   // AUTHENTICATED DASHBOARD INTERFACE
   return (
     <div style={{
-      backgroundColor: 'var(--bg-primary)',
+      backgroundColor: '#0a0a0a',
       minHeight: '100vh',
       padding: '7rem 2rem 5rem',
-      color: 'var(--text-primary)'
+      color: '#fff'
     }}>
       <div className="container">
         
@@ -278,7 +278,7 @@ export default function SecureAdmin() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          borderBottom: '1px solid var(--border-light)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
           paddingBottom: '2rem',
           marginBottom: '3rem',
           flexWrap: 'wrap',

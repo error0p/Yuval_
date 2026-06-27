@@ -22,12 +22,12 @@ function InvisibleGrillDiagram() {
       </div>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#d3e2e5" />
-              <stop offset="60%" stopColor="#eaf1f3" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="0%" stopColor="#081418" />
+              <stop offset="60%" stopColor="#215461" />
+              <stop offset="100%" stopColor="#3ea1b9" stopOpacity="0.95" />
             </linearGradient>
             <clipPath id="grillClip">
               <rect x="25" y="20" width={(sliderVal / 100) * 270} height="160" />
@@ -35,16 +35,16 @@ function InvisibleGrillDiagram() {
           </defs>
           
           <rect x="25" y="20" width="270" height="160" fill="url(#sky)" />
-          <path d="M 25 150 L 80 110 L 140 140 L 220 90 L 295 160 Z" fill="#cfdadc" opacity="0.85" />
-          <path d="M 80 180 L 160 130 L 230 160 L 295 120 L 295 180 Z" fill="#b0c0c3" />
-          <circle cx="180" cy="110" r="14" fill="#ffebd3" filter="drop-shadow(0 0 8px #ffb366)" opacity="0.9" />
+          <path d="M 25 150 L 80 110 L 140 140 L 220 90 L 295 160 Z" fill="#1b1222" opacity="0.9" />
+          <path d="M 80 180 L 160 130 L 230 160 L 295 120 L 295 180 Z" fill="#120c18" />
+          <circle cx="180" cy="110" r="14" fill="#ffebd3" filter="drop-shadow(0 0 10px #ff9e3b)" />
 
-          <rect x="20" y="15" width="280" height="8" fill="var(--text-muted)" />
-          <rect x="20" y="175" width="280" height="40" fill="var(--bg-tertiary)" />
-          <rect x="20" y="172" width="280" height="4" fill="var(--text-muted)" />
+          <rect x="20" y="15" width="280" height="8" fill="#1f1f1f" />
+          <rect x="20" y="175" width="280" height="40" fill="1a1a1a" />
+          <rect x="20" y="172" width="280" height="4" fill="#2b2b2b" />
           
-          <rect x="25" y="120" width="270" height="52" fill="rgba(33, 84, 97, 0.02)" stroke="rgba(33, 84, 97, 0.12)" strokeWidth="0.5" />
-          <line x1="25" y1="120" x2="295" y2="120" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="25" y="120" width="270" height="52" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+          <line x1="25" y1="120" x2="295" y2="120" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
 
           <g clipPath="url(#grillClip)">
             {grillWires.map((x) => (
@@ -54,10 +54,10 @@ function InvisibleGrillDiagram() {
                 y1="20" 
                 x2={x} 
                 y2="172" 
-                stroke="#6d8388" 
+                stroke="#fff" 
                 strokeWidth="0.8" 
-                opacity="0.7" 
-                filter="drop-shadow(0 0 1px rgba(255,255,255,0.9))"
+                opacity="0.55" 
+                filter="drop-shadow(0 0 1px rgba(255,255,255,0.8))"
               />
             ))}
           </g>
@@ -76,11 +76,11 @@ function InvisibleGrillDiagram() {
             cy="110" 
             r="8" 
             fill="var(--accent)" 
-            stroke="var(--bg-primary)" 
+            stroke="#0a0a0a" 
             strokeWidth="2" 
           />
 
-          <text x="30" y="200" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)">
+          <text x="30" y="200" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
             PROTECTION VIEW: {sliderVal}% SECURED
           </text>
         </svg>
@@ -97,7 +97,7 @@ export default function InvisibleGrillsPage() {
   };
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
+    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       
