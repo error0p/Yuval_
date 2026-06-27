@@ -207,17 +207,16 @@ export default function Home() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <HoverSliderImageWrap style={{ width: '100%', maxWidth: '500px', height: '380px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
                 {SLIDES.map((slide, index) => (
-                  <div key={slide.id} style={{ width: '100%', height: '100%' }}>
-                    <HoverSliderImage
-                      index={index}
-                      imageUrl={slide.imageUrl}
-                      src={slide.imageUrl}
-                      alt={slide.title}
-                      className="size-full object-cover"
-                      loading="eager"
-                      decoding="async"
-                    />
-                  </div>
+                  <HoverSliderImage
+                    key={slide.id}
+                    index={index}
+                    imageUrl={slide.imageUrl}
+                    src={slide.imageUrl}
+                    alt={slide.title}
+                    className="size-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
                 ))}
               </HoverSliderImageWrap>
             </div>

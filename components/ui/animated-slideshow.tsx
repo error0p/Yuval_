@@ -103,7 +103,7 @@ export const TextStaggerHover = React.forwardRef<
             }}
           >
             <motion.span
-              className="inline-block opacity-20"
+              className="inline-block opacity-45"
               initial={{ y: "0%" }}
               animate={isActive ? { y: "-110%" } : { y: "0%" }}
             >
@@ -131,7 +131,7 @@ export const clipPathVariants = {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
   },
   hidden: {
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0px)",
+    clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
   },
 }
 export const HoverSliderImageWrap = React.forwardRef<
