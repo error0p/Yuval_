@@ -93,7 +93,7 @@ export default function Footer() {
 
       <style jsx>{`
         :global(.footer-link:hover) {
-          color: #c5a880 !important;
+          color: var(--accent) !important;
         }
         :global(.admin-link:hover) {
           color: #888 !important;

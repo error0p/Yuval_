@@ -84,8 +84,8 @@ export default function ServiceAreasPage() {
             <svg viewBox="0 0 100 100" style={{ width: '100%', height: 'auto', display: 'block' }}>
               <defs>
                 <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#c5a880" stopOpacity="0.6"/>
-                  <stop offset="100%" stopColor="#c5a880" stopOpacity="0"/>
+                  <stop offset="0%" stopColor="#2d7a8e" stopOpacity="0.6"/>
+                  <stop offset="100%" stopColor="#2d7a8e" stopOpacity="0"/>
                 </radialGradient>
               </defs>
               
@@ -93,9 +93,9 @@ export default function ServiceAreasPage() {
               <path d="M 10 40 L 25 20 L 40 35 L 55 10 L 70 30 L 85 15 L 95 35" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M 25 15 Q 50 5 75 15 T 90 45 T 75 85 T 45 95 T 15 75 T 25 15 Z" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.8" strokeDasharray="2 2"/>
               
-              <line x1="45" y1="65" x2="50" y2="25" stroke="rgba(197, 168, 128, 0.15)" strokeWidth="0.4" strokeDasharray="1 1"/>
-              <line x1="45" y1="65" x2="30" y2="45" stroke="rgba(197, 168, 128, 0.15)" strokeWidth="0.4" strokeDasharray="1 1"/>
-              <line x1="45" y1="65" x2="70" y2="70" stroke="rgba(197, 168, 128, 0.15)" strokeWidth="0.4" strokeDasharray="1 1"/>
+              <line x1="45" y1="65" x2="50" y2="25" stroke="rgba(33, 84, 97, 0.25)" strokeWidth="0.4" strokeDasharray="1 1"/>
+              <line x1="45" y1="65" x2="30" y2="45" stroke="rgba(33, 84, 97, 0.25)" strokeWidth="0.4" strokeDasharray="1 1"/>
+              <line x1="45" y1="65" x2="70" y2="70" stroke="rgba(33, 84, 97, 0.25)" strokeWidth="0.4" strokeDasharray="1 1"/>
 
               {/* Pins */}
               {SERVICE_AREAS.map((area) => {
@@ -118,7 +118,7 @@ export default function ServiceAreasPage() {
                       cx={area.coords.x} 
                       cy={area.coords.y} 
                       r={isHovered ? 2 : 1.2} 
-                      fill={isHovered ? '#fff' : '#c5a880'} 
+                      fill={isHovered ? '#fff' : '#215461'} 
                       stroke="#0a0a0a"
                       strokeWidth="0.4"
                       style={{ transition: 'fill 0.3s, r 0.3s' }}

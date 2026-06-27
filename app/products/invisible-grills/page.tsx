@@ -25,9 +25,9 @@ function InvisibleGrillDiagram() {
         <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#2c1a35" />
-              <stop offset="60%" stopColor="#4a263c" />
-              <stop offset="100%" stopColor="#c5a880" stopOpacity="0.8" />
+              <stop offset="0%" stopColor="#081418" />
+              <stop offset="60%" stopColor="#215461" />
+              <stop offset="100%" stopColor="#3ea1b9" stopOpacity="0.95" />
             </linearGradient>
             <clipPath id="grillClip">
               <rect x="25" y="20" width={(sliderVal / 100) * 270} height="160" />
