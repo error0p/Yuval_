@@ -63,7 +63,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       
@@ -77,7 +77,7 @@ export default function ContactPage() {
           <h1 style={{ fontSize: 'calc(2.5rem + 1vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>
             Free Sizing & Consultation.
           </h1>
-          <p style={{ color: '#888', maxWidth: '600px', margin: '0 auto', fontSize: '1rem', lineHeight: '1.6', fontWeight: 300 }}>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '1rem', lineHeight: '1.6', fontWeight: 300 }}>
             Schedule a site survey or request quotations. Fill out the blueprint form below and our architectural team will reach out shortly.
           </p>
         </div>
@@ -96,29 +96,29 @@ export default function ContactPage() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#555', display: 'block', marginBottom: '0.4rem' }}>WhatsApp Chat</span>
-                  <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="phone-link">
+                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem' }}>WhatsApp Chat</span>
+                  <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="phone-link">
                     +91 98320 65123
                   </a>
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#555', display: 'block', marginBottom: '0.4rem' }}>Call Operations</span>
-                  <a href="tel:+919832065123" style={{ color: '#fff', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500 }} className="phone-link">
+                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem' }}>Call Operations</span>
+                  <a href="tel:+919832065123" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500 }} className="phone-link">
                     +91 98320 65123
                   </a>
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#555', display: 'block', marginBottom: '0.4rem' }}>Email Support</span>
-                  <a href="mailto:info@yuvalenterprise.com" style={{ color: '#fff', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500 }} className="phone-link">
+                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem' }}>Email Support</span>
+                  <a href="mailto:info@yuvalenterprise.com" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '1.2rem', fontWeight: 500 }} className="phone-link">
                     info@yuvalenterprise.com
                   </a>
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#555', display: 'block', marginBottom: '0.4rem' }}>Office Locations</span>
-                  <p style={{ color: '#ccc', fontSize: '0.95rem', fontWeight: 300, lineHeight: '1.5' }}>
+                  <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem' }}>Office Locations</span>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', fontWeight: 300, lineHeight: '1.5' }}>
                     Siliguri & Gangtok Hubs<br />
                     West Bengal & Sikkim, India
                   </p>
@@ -211,13 +211,13 @@ export default function ContactPage() {
                     value={formData.location}
                     onChange={handleChange}
                     className="input-field select-field"
-                    style={{ color: formData.location ? '#fff' : '#666' }}
+                    style={{ color: formData.location ? 'var(--text-primary)' : 'var(--text-muted)' }}
                   >
                     <option value="" disabled hidden></option>
-                    <option value="Siliguri">Siliguri</option>
-                    <option value="Gangtok">Gangtok / Sikkim</option>
-                    <option value="North Bengal Hills">North Bengal (Darjeeling / Kalimpong / Kurseong)</option>
-                    <option value="Dooars">Dooars Region</option>
+                    <option value="Siliguri" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Siliguri</option>
+                    <option value="Gangtok" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Gangtok / Sikkim</option>
+                    <option value="North Bengal Hills" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>North Bengal (Darjeeling / Kalimpong / Kurseong)</option>
+                    <option value="Dooars" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Dooars Region</option>
                   </select>
                   <label htmlFor="location" className="input-label">Location / Site Project *</label>
                 </div>
@@ -230,14 +230,14 @@ export default function ContactPage() {
                     value={formData.product}
                     onChange={handleChange}
                     className="input-field select-field"
-                    style={{ color: formData.product ? '#fff' : '#666' }}
+                    style={{ color: formData.product ? 'var(--text-primary)' : 'var(--text-muted)' }}
                   >
                     <option value="" disabled hidden></option>
-                    <option value="uPVC Windows & Doors">uPVC Windows & Doors</option>
-                    <option value="Invisible Grills">Invisible Grills</option>
-                    <option value="Pleated Mosquito Nets">Pleated Mosquito Nets</option>
-                    <option value="Ceiling Cloth Hangers">Ceiling Cloth Hangers</option>
-                    <option value="Multiple Products / Complete Utility">Multiple Solutions / Full Package</option>
+                    <option value="uPVC Windows & Doors" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>uPVC Windows & Doors</option>
+                    <option value="Invisible Grills" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Invisible Grills</option>
+                    <option value="Pleated Mosquito Nets" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Pleated Mosquito Nets</option>
+                    <option value="Ceiling Cloth Hangers" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Ceiling Cloth Hangers</option>
+                    <option value="Multiple Products / Complete Utility" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>Multiple Solutions / Full Package</option>
                   </select>
                   <label htmlFor="product" className="input-label">Product Interested In *</label>
                 </div>

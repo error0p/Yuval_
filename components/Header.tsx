@@ -50,10 +50,10 @@ export default function Header() {
                   top: '100%',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: 'rgba(10, 10, 10, 0.95)',
+                  background: 'rgba(255, 255, 255, 0.98)',
                   backdropFilter: 'blur(20px)',
                   WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255,255,255,0.05)',
+                  border: '1px solid var(--border-light)',
                   borderRadius: '6px',
                   padding: '1rem',
                   display: 'flex',
@@ -106,7 +106,7 @@ export default function Header() {
           left: 0,
           width: '100%',
           height: '100vh',
-          background: 'rgba(10, 10, 10, 0.98)',
+          background: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           zIndex: 999,
@@ -119,12 +119,12 @@ export default function Header() {
         }}>
           <Link href="/" className="nav-link" style={{ fontSize: '1.25rem', letterSpacing: '0.15em' }} onClick={() => setMobileMenuOpen(false)}>Home</Link>
           
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '0.8rem 0', width: '100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)', padding: '0.8rem 0', width: '100%' }}>
             <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#666' }}>Products</span>
-            <Link href="/products/upvc" className="nav-link" style={{ fontSize: '1.1rem', color: '#fff' }} onClick={() => setMobileMenuOpen(false)}>uPVC Windows & Doors</Link>
-            <Link href="/products/invisible-grills" className="nav-link" style={{ fontSize: '1.1rem', color: '#fff' }} onClick={() => setMobileMenuOpen(false)}>Invisible Grills</Link>
-            <Link href="/products/pleated-nets" className="nav-link" style={{ fontSize: '1.1rem', color: '#fff' }} onClick={() => setMobileMenuOpen(false)}>Pleated Mosquito Nets</Link>
-            <Link href="/products/ceiling-hangers" className="nav-link" style={{ fontSize: '1.1rem', color: '#fff' }} onClick={() => setMobileMenuOpen(false)}>Ceiling Cloth Hangers</Link>
+            <Link href="/products/upvc" className="nav-link" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }} onClick={() => setMobileMenuOpen(false)}>uPVC Windows & Doors</Link>
+            <Link href="/products/invisible-grills" className="nav-link" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }} onClick={() => setMobileMenuOpen(false)}>Invisible Grills</Link>
+            <Link href="/products/pleated-nets" className="nav-link" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }} onClick={() => setMobileMenuOpen(false)}>Pleated Mosquito Nets</Link>
+            <Link href="/products/ceiling-hangers" className="nav-link" style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }} onClick={() => setMobileMenuOpen(false)}>Ceiling Cloth Hangers</Link>
           </div>
 
           <Link href="/projects" className="nav-link" style={{ fontSize: '1.25rem', letterSpacing: '0.15em' }} onClick={() => setMobileMenuOpen(false)}>Projects</Link>
@@ -152,7 +152,7 @@ export default function Header() {
         }
         .dropdown-item:hover {
           color: var(--accent);
-          background: rgba(255, 255, 255, 0.02);
+          background: rgba(0, 0, 0, 0.03);
         }
         @media (max-width: 992px) {
           .desktop-only {

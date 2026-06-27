@@ -46,7 +46,7 @@ export default function ServiceAreasPage() {
   const [activeArea, setActiveArea] = useState<ServiceArea | null>(null);
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       
@@ -60,7 +60,7 @@ export default function ServiceAreasPage() {
           <h1 style={{ fontSize: 'calc(2.5rem + 1vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>
             Service Areas & Networks.
           </h1>
-          <p style={{ fontSize: '1.1rem', color: '#ccc', lineHeight: '1.7', fontWeight: 300 }}>
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.7', fontWeight: 300 }}>
             We deploy dedicated installation and support engineers across North Bengal and Sikkim. Click or hover on the glowing network pins below to explore regional capabilities, specialties, and support hubs.
           </p>
         </div>
@@ -70,7 +70,7 @@ export default function ServiceAreasPage() {
           {/* SVG Interactive Map */}
           <div style={{
             position: 'relative',
-            backgroundColor: '#121212',
+            backgroundColor: 'var(--bg-secondary)',
             borderRadius: '16px',
             border: '1px solid var(--border-light)',
             padding: '2rem',
@@ -78,7 +78,7 @@ export default function ServiceAreasPage() {
             boxShadow: 'var(--shadow-sm)'
           }}>
             <div style={{ position: 'absolute', top: '1rem', left: '1.5rem', zIndex: 5 }}>
-              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#444' }}>Interactive Network Map</span>
+              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--text-muted)' }}>Interactive Network Map</span>
             </div>
             
             <svg viewBox="0 0 100 100" style={{ width: '100%', height: 'auto', display: 'block' }}>
@@ -89,9 +89,9 @@ export default function ServiceAreasPage() {
                 </radialGradient>
               </defs>
               
-              <path d="M 0 10 L 100 10 M 0 30 L 100 30 M 0 50 L 100 50 M 0 70 L 100 70 M 0 90 L 100 90 M 10 0 L 10 100 M 30 0 L 30 100 M 50 0 L 50 100 M 70 0 L 70 100 M 90 0 L 90 100" stroke="rgba(255,255,255,0.02)" strokeWidth="0.2"/>
-              <path d="M 10 40 L 25 20 L 40 35 L 55 10 L 70 30 L 85 15 L 95 35" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M 25 15 Q 50 5 75 15 T 90 45 T 75 85 T 45 95 T 15 75 T 25 15 Z" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.8" strokeDasharray="2 2"/>
+              <path d="M 0 10 L 100 10 M 0 30 L 100 30 M 0 50 L 100 50 M 0 70 L 100 70 M 0 90 L 100 90 M 10 0 L 10 100 M 30 0 L 30 100 M 50 0 L 50 100 M 70 0 L 70 100 M 90 0 L 90 100" stroke="rgba(0,0,0,0.015)" strokeWidth="0.2"/>
+              <path d="M 10 40 L 25 20 L 40 35 L 55 10 L 70 30 L 85 15 L 95 35" fill="none" stroke="rgba(0,0,0,0.02)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M 25 15 Q 50 5 75 15 T 90 45 T 75 85 T 45 95 T 15 75 T 25 15 Z" fill="none" stroke="rgba(0,0,0,0.03)" strokeWidth="0.8" strokeDasharray="2 2"/>
               
               <line x1="45" y1="65" x2="50" y2="25" stroke="rgba(33, 84, 97, 0.25)" strokeWidth="0.4" strokeDasharray="1 1"/>
               <line x1="45" y1="65" x2="30" y2="45" stroke="rgba(33, 84, 97, 0.25)" strokeWidth="0.4" strokeDasharray="1 1"/>
@@ -119,7 +119,7 @@ export default function ServiceAreasPage() {
                       cy={area.coords.y} 
                       r={isHovered ? 2 : 1.2} 
                       fill={isHovered ? '#fff' : '#215461'} 
-                      stroke="#0a0a0a"
+                      stroke="var(--bg-primary)"
                       strokeWidth="0.4"
                       style={{ transition: 'fill 0.3s, r 0.3s' }}
                     />
@@ -133,7 +133,7 @@ export default function ServiceAreasPage() {
                       x={area.coords.x} 
                       y={area.coords.y - 3} 
                       textAnchor="middle" 
-                      fill={isHovered ? '#fff' : '#666'} 
+                      fill={isHovered ? 'var(--text-primary)' : 'var(--text-secondary)'} 
                       fontSize="2.8" 
                       fontWeight={isHovered ? '600' : '400'}
                       style={{ transition: 'fill 0.3s', fontFamily: 'var(--font-sans)' }}
@@ -150,15 +150,15 @@ export default function ServiceAreasPage() {
           <div>
             {activeArea ? (
               <div style={{ animation: 'fadeIn 0.5s ease-out' }}>
-                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', fontWeight: 500 }}>Operational Hub</span>
+                 <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', fontWeight: 500 }}>Operational Hub</span>
                 <h3 style={{ fontSize: '2rem', fontWeight: 400, marginTop: '0.5rem', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)' }}>{activeArea.name}</h3>
-                <p style={{ fontSize: '1rem', lineHeight: '1.7', color: '#ccc', marginBottom: '2rem', fontWeight: 300 }}>
+                <p style={{ fontSize: '1rem', lineHeight: '1.7', color: 'var(--text-secondary)', marginBottom: '2rem', fontWeight: 300 }}>
                   {activeArea.description}
                 </p>
-                <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#fff', marginBottom: '1rem', fontFamily: 'var(--font-sans)' }}>Popular Installations:</h4>
+                <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-primary)', marginBottom: '1rem', fontFamily: 'var(--font-sans)' }}>Popular Installations:</h4>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                   {activeArea.specialties.map((spec, index) => (
-                    <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', color: '#888', fontSize: '0.95rem' }}>
+                    <li key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
                       <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--accent)' }}></span>
                       {spec}
                     </li>
@@ -174,7 +174,7 @@ export default function ServiceAreasPage() {
               }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1" style={{ marginBottom: '1rem', opacity: 0.6 }}><circle cx="12" cy="10" r="3"></circle><path d="M12 2a8 8 0 0 0-8 8c0 1.89.77 4.12 2.15 6.19C7.51 18.26 9.61 20 12 20s4.49-1.74 5.85-3.81C19.23 14.12 20 11.89 20 10a8 8 0 0 0-8-8z"></path></svg>
                 <h3 style={{ fontSize: '1.2rem', fontWeight: 400, marginBottom: '0.5rem', fontFamily: 'var(--font-sans)' }}>Select a Service Region</h3>
-                <p style={{ fontSize: '0.85rem', color: '#666', maxWidth: '300px', margin: '0 auto' }}>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', maxWidth: '300px', margin: '0 auto' }}>
                   Hover over or click on the glowing pins on the interactive map to explore our localized capabilities and specialties.
                 </p>
               </div>
@@ -183,9 +183,9 @@ export default function ServiceAreasPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ textAlign: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '4rem' }}>
+        <div style={{ textAlign: 'center', borderTop: '1px solid var(--border-light)', paddingTop: '4rem' }}>
           <h3 style={{ fontSize: '1.8rem', fontWeight: 400, marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>Have a project in our coverage area?</h3>
-          <p style={{ color: '#888', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem auto' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem auto' }}>
             Book a site survey and consultation. Our team handles local sizing, custom transport, and complete structural installations.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>

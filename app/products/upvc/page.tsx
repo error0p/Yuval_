@@ -36,34 +36,34 @@ function UPvcDiagram() {
       </div>
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
-          <path d="M 50 30 L 150 30 L 150 70 L 170 70 L 170 210 L 50 210 Z" fill="none" stroke="#444" strokeWidth="2.5" />
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: 'var(--bg-secondary)', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+          <path d="M 50 30 L 150 30 L 150 70 L 170 70 L 170 210 L 50 210 Z" fill="none" stroke="var(--text-muted)" strokeWidth="2" />
           
-          <rect x="58" y="38" width="84" height="24" fill="none" stroke="#2b2b2b" strokeWidth="1" />
-          <rect x="58" y="68" width="40" height="60" fill="none" stroke="#2b2b2b" strokeWidth="1" />
-          <rect x="102" y="68" width="40" height="60" fill="none" stroke="#2b2b2b" strokeWidth="1" />
-          <rect x="58" y="134" width="104" height="68" fill="none" stroke="#2b2b2b" strokeWidth="1" />
+          <rect x="58" y="38" width="84" height="24" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="58" y="68" width="40" height="60" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="102" y="68" width="40" height="60" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="58" y="134" width="104" height="68" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
 
-          <g opacity={activeTab === 'thermal' ? 0.25 : 0.05} style={{ transition: 'opacity 0.5s' }}>
+          <g opacity={activeTab === 'thermal' ? 0.15 : 0.02} style={{ transition: 'opacity 0.5s' }}>
             <rect x="58" y="38" width="84" height="24" fill="var(--accent)" />
             <rect x="58" y="68" width="40" height="60" fill="var(--accent)" />
             <rect x="102" y="68" width="40" height="60" fill="var(--accent)" />
             <rect x="58" y="134" width="104" height="68" fill="var(--accent)" />
           </g>
 
-          <rect x="106" y="74" width="32" height="48" fill="none" stroke="#555" strokeWidth="2" />
-          <rect x="110" y="78" width="24" height="40" fill={activeTab === 'reinforce' ? 'var(--accent)' : '#222'} opacity={activeTab === 'reinforce' ? 0.3 : 0.8} stroke="var(--accent)" strokeWidth="1" style={{ transition: 'all 0.5s' }} />
+          <rect x="106" y="74" width="32" height="48" fill="none" stroke="var(--text-muted)" strokeWidth="2" />
+          <rect x="110" y="78" width="24" height="40" fill={activeTab === 'reinforce' ? 'var(--accent)' : 'var(--bg-primary)'} opacity={activeTab === 'reinforce' ? 0.35 : 0.9} stroke="var(--accent)" strokeWidth="1" style={{ transition: 'all 0.5s' }} />
           {activeTab === 'reinforce' && (
-            <text x="122" y="102" fill="#fff" fontSize="8" textAnchor="middle" fontWeight="bold">Fe</text>
+            <text x="122" y="102" fill="var(--text-primary)" fontSize="8" textAnchor="middle" fontWeight="bold">Fe</text>
           )}
 
-          <circle cx="150" cy="50" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
-          <circle cx="170" cy="74" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
-          <circle cx="170" cy="206" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
+          <circle cx="150" cy="50" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : 'var(--border-medium)'} stroke="var(--bg-primary)" style={{ transition: 'all 0.5s' }} />
+          <circle cx="170" cy="74" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : 'var(--border-medium)'} stroke="var(--bg-primary)" style={{ transition: 'all 0.5s' }} />
+          <circle cx="170" cy="206" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : 'var(--border-medium)'} stroke="var(--bg-primary)" style={{ transition: 'all 0.5s' }} />
 
-          <rect x="210" y="40" width="10" height="160" fill="none" stroke="#444" strokeWidth="1" />
-          <rect x="235" y="40" width="10" height="160" fill="none" stroke="#444" strokeWidth="1" />
-          <rect x="220" y="40" width="15" height="160" fill={activeTab === 'glass' ? 'rgba(197,168,128,0.1)' : 'rgba(255,255,255,0.01)'} style={{ transition: 'all 0.5s' }} />
+          <rect x="210" y="40" width="10" height="160" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="235" y="40" width="10" height="160" fill="none" stroke="var(--border-medium)" strokeWidth="1" />
+          <rect x="220" y="40" width="15" height="160" fill={activeTab === 'glass' ? 'var(--accent-light)' : 'transparent'} style={{ transition: 'all 0.5s' }} />
           {activeTab === 'glass' && (
             <text x="227" y="125" fill="var(--accent)" fontSize="8" textAnchor="middle" letterSpacing="0.1em" transform="rotate(-90, 227, 125)">ARGON GAS</text>
           )}
@@ -84,7 +84,7 @@ function UPvcDiagram() {
             </g>
           )}
 
-          <text x="25" y="222" fill="#888" fontSize="8" fontFamily="var(--font-sans)">
+          <text x="25" y="222" fill="var(--text-secondary)" fontSize="8" fontFamily="var(--font-sans)">
             {activeTab === 'thermal' && 'THERMAL BARRIER: MULTI-CHAMBER HEAT DISSIPATION'}
             {activeTab === 'reinforce' && 'STRUCTURAL SOLIDITY: HEAVY-DUTY STEEL REINFORCEMENT'}
             {activeTab === 'seals' && 'SOUND SHIELDING: CONTINUOUS TRIPLE GASKETS BLOCK NOISE'}
@@ -104,7 +104,7 @@ export default function UpvcPage() {
   };
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '8rem 0 5rem', color: '#fff', position: 'relative' }}>
+    <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', padding: '8rem 0 5rem', color: 'var(--text-primary)', position: 'relative' }}>
       <div className="ambient-glow ambient-glow-1" />
       <div className="ambient-glow ambient-glow-2" />
       
