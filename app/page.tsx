@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // Service Area Data for Interactive Map
@@ -44,8 +43,465 @@ const SERVICE_AREAS: ServiceArea[] = [
   },
 ];
 
+/* ==========================================
+   1. uPVC INTERACTIVE SCHEMATIC DIAGRAM
+   ========================================== */
+function UPvcDiagram() {
+  const [activeTab, setActiveTab] = useState<'thermal' | 'reinforce' | 'seals' | 'glass'>('thermal');
+
+  return (
+    <div className="tech-svg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
+      <div className="feature-tabs">
+        <button 
+          onClick={() => setActiveTab('thermal')} 
+          className={`feature-tab ${activeTab === 'thermal' ? 'active' : ''}`}
+        >
+          Thermal Chambers
+        </button>
+        <button 
+          onClick={() => setActiveTab('reinforce')} 
+          className={`feature-tab ${activeTab === 'reinforce' ? 'active' : ''}`}
+        >
+          Steel Core
+        </button>
+        <button 
+          onClick={() => setActiveTab('seals')} 
+          className={`feature-tab ${activeTab === 'seals' ? 'active' : ''}`}
+        >
+          Triple Gaskets
+        </button>
+        <button 
+          onClick={() => setActiveTab('glass')} 
+          className={`feature-tab ${activeTab === 'glass' ? 'active' : ''}`}
+        >
+          Argon Glazing
+        </button>
+      </div>
+
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          {/* Outer PVC Frame boundaries */}
+          <path d="M 50 30 L 150 30 L 150 70 L 170 70 L 170 210 L 50 210 Z" fill="none" stroke="#444" strokeWidth="2.5" />
+          
+          {/* Chambers */}
+          <rect x="58" y="38" width="84" height="24" fill="none" stroke="#2b2b2b" strokeWidth="1" />
+          <rect x="58" y="68" width="40" height="60" fill="none" stroke="#2b2b2b" strokeWidth="1" />
+          <rect x="102" y="68" width="40" height="60" fill="none" stroke="#2b2b2b" strokeWidth="1" />
+          <rect x="58" y="134" width="104" height="68" fill="none" stroke="#2b2b2b" strokeWidth="1" />
+
+          {/* Multi-chamber highlights */}
+          <g opacity={activeTab === 'thermal' ? 0.25 : 0.05} style={{ transition: 'opacity 0.5s' }}>
+            <rect x="58" y="38" width="84" height="24" fill="var(--accent)" />
+            <rect x="58" y="68" width="40" height="60" fill="var(--accent)" />
+            <rect x="102" y="68" width="40" height="60" fill="var(--accent)" />
+            <rect x="58" y="134" width="104" height="68" fill="var(--accent)" />
+          </g>
+
+          {/* Steel Reinforcement Core */}
+          <rect x="106" y="74" width="32" height="48" fill="none" stroke="#555" strokeWidth="2" />
+          <rect x="110" y="78" width="24" height="40" fill={activeTab === 'reinforce' ? 'var(--accent)' : '#222'} opacity={activeTab === 'reinforce' ? 0.3 : 0.8} stroke="var(--accent)" strokeWidth="1" style={{ transition: 'all 0.5s' }} />
+          {activeTab === 'reinforce' && (
+            <text x="122" y="102" fill="#fff" fontSize="8" textAnchor="middle" fontWeight="bold">Fe</text>
+          )}
+
+          {/* Triple Gaskets */}
+          <circle cx="150" cy="50" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
+          <circle cx="170" cy="74" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
+          <circle cx="170" cy="206" r="4" fill={activeTab === 'seals' ? 'var(--accent)' : '#000'} stroke="#222" style={{ transition: 'all 0.5s' }} />
+
+          {/* Double Pane Argon Glazing */}
+          <rect x="210" y="40" width="10" height="160" fill="none" stroke="#444" strokeWidth="1" />
+          <rect x="235" y="40" width="10" height="160" fill="none" stroke="#444" strokeWidth="1" />
+          <rect x="220" y="40" width="15" height="160" fill={activeTab === 'glass' ? 'rgba(197,168,128,0.1)' : 'rgba(255,255,255,0.01)'} style={{ transition: 'all 0.5s' }} />
+          {activeTab === 'glass' && (
+            <text x="227" y="125" fill="var(--accent)" fontSize="8" textAnchor="middle" letterSpacing="0.1em" transform="rotate(-90, 227, 125)">ARGON GAS</text>
+          )}
+
+          {/* Glow indicator line */}
+          {activeTab === 'thermal' && <path d="M 50 30 L 150 30 L 150 70 L 170 70 L 170 210 L 50 210 Z" fill="none" stroke="var(--accent)" strokeWidth="1.5" filter="drop-shadow(0 0 2px var(--accent))" />}
+          {activeTab === 'reinforce' && <rect x="106" y="74" width="32" height="48" fill="none" stroke="var(--accent)" strokeWidth="1.5" filter="drop-shadow(0 0 2px var(--accent))" />}
+          {activeTab === 'seals' && (
+            <g>
+              <circle cx="150" cy="50" r="6" fill="none" stroke="var(--accent)" strokeWidth="1" />
+              <circle cx="170" cy="74" r="6" fill="none" stroke="var(--accent)" strokeWidth="1" />
+              <circle cx="170" cy="206" r="6" fill="none" stroke="var(--accent)" strokeWidth="1" />
+            </g>
+          )}
+          {activeTab === 'glass' && (
+            <g>
+              <rect x="210" y="40" width="10" height="160" fill="none" stroke="var(--accent)" strokeWidth="1" />
+              <rect x="235" y="40" width="10" height="160" fill="none" stroke="var(--accent)" strokeWidth="1" />
+            </g>
+          )}
+
+          {/* Tech Description overlay */}
+          <text x="25" y="222" fill="#888" fontSize="8" fontFamily="var(--font-sans)">
+            {activeTab === 'thermal' && 'THERMAL BARRIER: MULTI-CHAMBER HEAT DISSIPATION'}
+            {activeTab === 'reinforce' && 'STRUCTURAL SOLIDITY: HEAVY-DUTY STEEL REINFORCEMENT'}
+            {activeTab === 'seals' && 'SOUND SHIELDING: CONTINUOUS TRIPLE GASKETS BLOCK NOISE'}
+            {activeTab === 'glass' && 'ACOUSTIC & SOLAR BARRIER: DOUBLE-PANE ARGON GAS INSULATION'}
+          </text>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   2. INVISIBLE GRILL INTERACTIVE SLIDER
+   ========================================== */
+function InvisibleGrillDiagram() {
+  const [sliderVal, setSliderVal] = useState(50);
+  const grillWires = Array.from({ length: 15 }, (_, i) => 25 + i * 18);
+
+  return (
+    <div className="tech-svg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
+      <div>
+        <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff' }}>Drag to Simulate Installation</h4>
+        <input 
+          type="range" 
+          min="0" 
+          max="100" 
+          value={sliderVal} 
+          onChange={(e) => setSliderVal(parseInt(e.target.value))}
+          style={{ width: '100%', accentColor: 'var(--accent)' }}
+        />
+      </div>
+
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#2c1a35" />
+              <stop offset="60%" stopColor="#4a263c" />
+              <stop offset="100%" stopColor="#c5a880" stopOpacity="0.8" />
+            </linearGradient>
+            <clipPath id="grillClip">
+              <rect x="25" y="20" width={(sliderVal / 100) * 270} height="160" />
+            </clipPath>
+          </defs>
+          
+          {/* City view (rendered inside frame) */}
+          <rect x="25" y="20" width="270" height="160" fill="url(#sky)" />
+          
+          {/* Mountains in background */}
+          <path d="M 25 150 L 80 110 L 140 140 L 220 90 L 295 160 Z" fill="#1b1222" opacity="0.9" />
+          <path d="M 80 180 L 160 130 L 230 160 L 295 120 L 295 180 Z" fill="#120c18" />
+
+          {/* Glowing Sun */}
+          <circle cx="180" cy="110" r="14" fill="#ffebd3" filter="drop-shadow(0 0 10px #ff9e3b)" />
+
+          {/* Balcony Structure Overlay */}
+          <rect x="20" y="15" width="280" height="8" fill="#1f1f1f" />
+          <rect x="20" y="175" width="280" height="40" fill="#1a1a1a" />
+          <rect x="20" y="172" width="280" height="4" fill="#2b2b2b" />
+          
+          {/* Glass Railing */}
+          <rect x="25" y="120" width="270" height="52" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+          <line x1="25" y1="120" x2="295" y2="120" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+
+          {/* Wires (Clipped based on slider position) */}
+          <g clipPath="url(#grillClip)">
+            {grillWires.map((x) => (
+              <line 
+                key={x} 
+                x1={x} 
+                y1="20" 
+                x2={x} 
+                y2="172" 
+                stroke="#fff" 
+                strokeWidth="0.8" 
+                opacity="0.55" 
+                filter="drop-shadow(0 0 1px rgba(255,255,255,0.8))"
+              />
+            ))}
+          </g>
+
+          {/* Slider divider overlay */}
+          <line 
+            x1={25 + (sliderVal / 100) * 270} 
+            y1="15" 
+            x2={25 + (sliderVal / 100) * 270} 
+            y2="215" 
+            stroke="var(--accent)" 
+            strokeWidth="2" 
+            strokeDasharray="2 2"
+          />
+          <circle 
+            cx={25 + (sliderVal / 100) * 270} 
+            cy="110" 
+            r="8" 
+            fill="var(--accent)" 
+            stroke="#0a0a0a" 
+            strokeWidth="2" 
+          />
+
+          {/* Grid annotations */}
+          <text x="30" y="200" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
+            PROTECTION VIEW: {sliderVal}% SECURED
+          </text>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   3. PLEATED NET PHYSICAL DEPLOYMENT SIMULATION
+   ========================================== */
+function PleatedNetDiagram() {
+  const [position, setPosition] = useState(60);
+
+  const height = 200;
+  const maxWidth = 300;
+  const currentWidth = (position / 100) * maxWidth;
+  const numPleats = 16;
+  const pleatWidth = currentWidth / numPleats;
+  
+  let pathD = '';
+  if (currentWidth > 0) {
+    pathD = `M 0 0`;
+    for (let i = 0; i <= numPleats; i++) {
+      const x = i * pleatWidth;
+      const y = i % 2 === 0 ? 0 : height;
+      pathD += ` L ${x} ${y}`;
+    }
+  }
+
+  return (
+    <div className="tech-svg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
+      <div>
+        <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff' }}>Slide to Deploy Mesh</h4>
+        <input 
+          type="range" 
+          min="0" 
+          max="100" 
+          value={position} 
+          onChange={(e) => setPosition(parseInt(e.target.value))}
+          style={{ width: '100%', accentColor: 'var(--accent)' }}
+        />
+      </div>
+
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          {/* Frame Outer */}
+          <rect x="10" y="10" width="330" height="220" fill="none" stroke="#333" strokeWidth="2" />
+          
+          {/* Track Rails */}
+          <line x1="10" y1="20" x2="340" y2="20" stroke="#222" strokeWidth="4" />
+          <line x1="10" y1="220" x2="340" y2="220" stroke="#222" strokeWidth="4" />
+          
+          {/* Pleated Mesh */}
+          <g transform="translate(10, 20)">
+            <path 
+              d={pathD} 
+              fill="none" 
+              stroke="var(--accent)" 
+              strokeWidth="1.5" 
+              strokeLinejoin="round" 
+              opacity="0.8" 
+            />
+          </g>
+
+          {/* Sliding Handle Bar */}
+          <line 
+            x1={10 + currentWidth} 
+            y1="20" 
+            x2={10 + currentWidth} 
+            y2="220" 
+            stroke="#fff" 
+            strokeWidth="4" 
+          />
+          <circle 
+            cx={10 + currentWidth} 
+            cy="120" 
+            r="8" 
+            fill="var(--accent)" 
+            stroke="#0a0a0a" 
+            strokeWidth="2" 
+          />
+          
+          {/* Technical Specs Text */}
+          <text x="25" y="200" fill="#555" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
+            TENSION GUIDE WIRE ACTIVE
+          </text>
+          <text x="325" y="200" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)" letterSpacing="0.05em">
+            MESH EXPANSION: {position}%
+          </text>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   4. CEILING PULLEY SYSTEM DELEVATION SCHEMATIC
+   ========================================== */
+function CeilingHangerDiagram() {
+  const [heightOffset, setHeightOffset] = useState(20);
+
+  const pulleyX1 = 60;
+  const pulleyX2 = 240;
+  const gearX = 300;
+  const poleY = 40 + heightOffset;
+
+  return (
+    <div className="tech-svg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', height: '100%' }}>
+      <div>
+        <h4 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff' }}>Pulley Height Adjustment</h4>
+        <input 
+          type="range" 
+          min="0" 
+          max="120" 
+          value={heightOffset} 
+          onChange={(e) => setHeightOffset(parseInt(e.target.value))}
+          style={{ width: '100%', accentColor: 'var(--accent)' }}
+        />
+      </div>
+
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg viewBox="0 0 350 240" style={{ width: '100%', height: 'auto', background: '#111', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          {/* Ceiling Mount */}
+          <rect x="20" y="15" width="310" height="8" fill="#222" rx="2" />
+          
+          {/* Pulley Wheels */}
+          <circle cx={pulleyX1} cy="30" r="10" fill="none" stroke="#444" strokeWidth="2" />
+          <circle cx={pulleyX1} cy="30" r="4" fill="var(--accent)" />
+          
+          <circle cx={pulleyX2} cy="30" r="10" fill="none" stroke="#444" strokeWidth="2" />
+          <circle cx={pulleyX2} cy="30" r="4" fill="var(--accent)" />
+
+          {/* Wall-mounted Gear Controller */}
+          <rect x={gearX - 10} y="150" width="20" height="30" fill="#222" rx="3" />
+          <circle cx={gearX} cy="165" r="6" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
+          <line x1={gearX} y1="165" x2={gearX + 8} y2="157" stroke="var(--accent)" strokeWidth="2" />
+
+          {/* Rope 1: controller -> pulley 2 -> pulley 1 -> Pole Left */}
+          <path 
+            d={`M ${gearX} 150 L ${pulleyX2} 30 L ${pulleyX1} 30 L ${pulleyX1} ${poleY}`} 
+            fill="none" 
+            stroke="#aaa" 
+            strokeWidth="1.2" 
+          />
+          {/* Rope 2: controller -> pulley 2 -> Pole Right */}
+          <path 
+            d={`M ${gearX} 150 L ${pulleyX2} 30 L ${pulleyX2} ${poleY}`} 
+            fill="none" 
+            stroke="#aaa" 
+            strokeWidth="1.2" 
+          />
+
+          {/* Hanging Rod (Poles) */}
+          <rect x="40" y={poleY} width="220" height="8" fill="var(--accent)" rx="2" />
+          <line x1="40" y1={poleY + 4} x2="260" y2={poleY + 4} stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+          
+          {/* Hangers and Laundry Outlines */}
+          {[60, 110, 160, 210].map((xOffset) => (
+            <g key={xOffset} transform={`translate(${xOffset}, ${poleY + 8})`}>
+              <path d="M 10 0 L 0 10 L 20 10 Z" fill="none" stroke="#555" strokeWidth="1" />
+              <path d="M 0 10 L 4 40 L 16 40 L 20 10 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+            </g>
+          ))}
+
+          {/* Text Info */}
+          <text x="320" y="195" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
+            MECHANICAL ADVANTAGE: 2:1
+          </text>
+          <text x="320" y="210" textAnchor="end" fill="#555" fontSize="8" fontFamily="var(--font-sans)">
+            ELEVATION STATS: {120 - heightOffset}mm HEIGHT
+          </text>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   5. MINIMALIST BLUEPRINT CARD PLACEHOLDERS FOR PROJECTS
+   ========================================== */
+function ProjectBlueprint({ type }: { type: 'tower' | 'hotel' | 'villa' }) {
+  return (
+    <div style={{
+      width: '100%',
+      height: '280px',
+      background: '#111',
+      position: 'relative',
+      borderBottom: '1px solid var(--border-light)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden'
+    }}>
+      <div className="arch-grid" />
+      <svg viewBox="0 0 300 200" style={{ width: '80%', height: '80%', display: 'block', zIndex: 2 }}>
+        {type === 'tower' && (
+          <g>
+            {/* Outline of building tower */}
+            <rect x="90" y="20" width="120" height="170" fill="none" stroke="rgba(197,168,128,0.2)" strokeWidth="1" />
+            <rect x="90" y="20" width="120" height="170" fill="none" stroke="var(--accent)" strokeWidth="0.8" strokeDasharray="3 3" />
+            {/* Balcony segments */}
+            {[40, 65, 90, 115, 140, 165].map((y) => (
+              <g key={y}>
+                <line x1="80" y1={y} x2="220" y2={y} stroke="var(--accent)" strokeWidth="1" />
+                <rect x="95" y={y - 12} width="110" height="12" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
+                {/* Thin wires representing invisible grills */}
+                {Array.from({ length: 10 }, (_, idx) => 100 + idx * 10).map((x) => (
+                  <line key={x} x1={x} y1={y - 12} x2={x} y2={y} stroke="rgba(255,255,255,0.3)" strokeWidth="0.4" />
+                ))}
+              </g>
+            ))}
+            <text x="150" y="110" fill="rgba(197,168,128,0.4)" fontSize="8" letterSpacing="0.2em" textAnchor="middle" fontFamily="var(--font-sans)">STRUCTURAL BLUEPRINT</text>
+          </g>
+        )}
+        
+        {type === 'hotel' && (
+          <g>
+            {/* Mountain peak lines */}
+            <path d="M 20 180 L 100 80 L 160 140 L 240 60 L 290 130" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+            
+            {/* Hillside Cascading Hotel Frame */}
+            <path d="M 120 140 L 220 140 L 220 180 L 120 180 Z" fill="none" stroke="var(--accent)" strokeWidth="0.8" />
+            <path d="M 140 100 L 240 100 L 240 140 L 140 140 Z" fill="none" stroke="var(--accent)" strokeWidth="0.8" />
+            <path d="M 160 60 L 260 60 L 260 100 L 160 100 Z" fill="none" stroke="var(--accent)" strokeWidth="1" />
+            
+            {/* Large glazing lines */}
+            <line x1="170" y1="70" x2="170" y2="90" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="1 1" />
+            <line x1="250" y1="70" x2="250" y2="90" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="1 1" />
+            <line x1="150" y1="110" x2="150" y2="130" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="1 1" />
+            
+            <text x="200" y="125" fill="rgba(197,168,128,0.4)" fontSize="8" letterSpacing="0.2em" textAnchor="middle" fontFamily="var(--font-sans)">ELEVATION BLUEPRINT</text>
+          </g>
+        )}
+
+        {type === 'villa' && (
+          <g>
+            {/* Isometric box villa segments */}
+            {/* Base block */}
+            <path d="M 60 140 L 150 100 L 240 140 L 150 180 Z" fill="none" stroke="var(--accent)" strokeWidth="0.8" />
+            <line x1="60" y1="140" x2="60" y2="180" stroke="var(--accent)" strokeWidth="0.8" />
+            <line x1="150" y1="180" x2="150" y2="220" stroke="var(--accent)" strokeWidth="0.8" />
+            <line x1="240" y1="140" x2="240" y2="180" stroke="var(--accent)" strokeWidth="0.8" />
+            <path d="M 60 180 L 150 220 L 240 180" fill="none" stroke="var(--accent)" strokeWidth="0.8" />
+
+            {/* Top offset block */}
+            <path d="M 80 80 L 170 40 L 260 80 L 170 120 Z" fill="none" stroke="var(--accent)" strokeWidth="1" />
+            <line x1="80" y1="80" x2="80" y2="120" stroke="var(--accent)" strokeWidth="1" />
+            <line x1="170" y1="120" x2="170" y2="160" stroke="var(--accent)" strokeWidth="1" />
+            <line x1="260" y1="80" x2="260" y2="120" stroke="var(--accent)" strokeWidth="1" />
+            <path d="M 80 120 L 170 160 L 260 120" fill="none" stroke="var(--accent)" strokeWidth="1" />
+
+            <text x="170" y="100" fill="rgba(197,168,128,0.4)" fontSize="8" letterSpacing="0.2em" textAnchor="middle" fontFamily="var(--font-sans)">ISOMETRIC SCHEMATIC</text>
+          </g>
+        )}
+      </svg>
+    </div>
+  );
+}
+
+/* ==========================================
+   6. MAIN HOMEPAGE COMPONENT
+   ========================================== */
 export default function Home() {
-  // Map Hover State
   const [activeArea, setActiveArea] = useState<ServiceArea | null>(null);
 
   // Form State
@@ -112,7 +568,13 @@ export default function Home() {
   };
 
   return (
-    <div id="home">
+    <div id="home" style={{ position: 'relative' }}>
+      
+      {/* Dynamic Background Light (Ambient Glows) */}
+      <div className="ambient-glow ambient-glow-1" />
+      <div className="ambient-glow ambient-glow-2" />
+      <div className="ambient-glow ambient-glow-3" />
+
       {/* 1. HERO SECTION */}
       <section className="hero-section" style={{
         height: '100vh',
@@ -120,22 +582,20 @@ export default function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'url("/hero-luxury.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
+        overflow: 'hidden'
       }}>
+        <div className="arch-grid" />
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.85) 100%)',
-          zIndex: 1
+          background: 'linear-gradient(to bottom, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.95) 100%)',
+          zIndex: 2
         }} />
         
-        <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '900px' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 3, textAlign: 'center', maxWidth: '900px' }}>
           <h1 className="hero-title">
             Designed for Better Living.
           </h1>
@@ -164,8 +624,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PRODUCTS SECTION (Apple-Style Immersive Showroom) */}
-      <section id="products" className="section" style={{ padding: 0 }}>
+      {/* 2. PRODUCTS SECTION (Immersive Vector blueprints) */}
+      <section id="products" className="section" style={{ padding: 0, position: 'relative', zIndex: 5 }}>
         
         {/* Product 1: uPVC */}
         <div id="upvc" className="product-viewport" style={{
@@ -194,15 +654,8 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="product-image-container" style={{ position: 'relative', height: '450px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-              <Image 
-                src="/product-upvc.png" 
-                alt="uPVC Windows & Doors" 
-                fill 
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }} 
-                priority
-              />
+            <div className="product-image-container" style={{ height: '450px' }}>
+              <UPvcDiagram />
             </div>
           </div>
         </div>
@@ -218,14 +671,8 @@ export default function Home() {
           borderBottom: '1px solid var(--border-light)'
         }}>
           <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', zIndex: 2 }}>
-            <div className="product-image-container order-mobile-2" style={{ position: 'relative', height: '450px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-              <Image 
-                src="/product-grill.png" 
-                alt="Invisible Grills" 
-                fill 
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }} 
-              />
+            <div className="product-image-container order-mobile-2" style={{ height: '450px' }}>
+              <InvisibleGrillDiagram />
             </div>
             <div className="order-mobile-1">
               <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>Invisible Grills</span>
@@ -274,14 +721,8 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="product-image-container" style={{ position: 'relative', height: '450px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-              <Image 
-                src="/product-net.png" 
-                alt="Pleated Mosquito Nets" 
-                fill 
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }} 
-              />
+            <div className="product-image-container" style={{ height: '450px' }}>
+              <PleatedNetDiagram />
             </div>
           </div>
         </div>
@@ -297,14 +738,8 @@ export default function Home() {
           borderBottom: '1px solid var(--border-light)'
         }}>
           <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center', zIndex: 2 }}>
-            <div className="product-image-container order-mobile-2" style={{ position: 'relative', height: '450px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-              <Image 
-                src="/product-hanger.png" 
-                alt="Ceiling Cloth Hangers" 
-                fill 
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: 'cover' }} 
-              />
+            <div className="product-image-container order-mobile-2" style={{ height: '450px' }}>
+              <CeilingHangerDiagram />
             </div>
             <div className="order-mobile-1">
               <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>Ceiling Cloth Hangers</span>
@@ -327,8 +762,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. PROJECTS SECTION (Architectural Showcase) */}
-      <section id="projects" className="section" style={{ backgroundColor: '#0a0a0a' }}>
+      {/* 3. PROJECTS SECTION (Technical Blueprint Showcase) */}
+      <section id="projects" className="section" style={{ backgroundColor: '#0a0a0a', position: 'relative', zIndex: 5 }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>Recent Showcases</span>
@@ -341,16 +776,7 @@ export default function Home() {
           <div className="projects-grid">
             {/* Project 1 */}
             <div className="glass-card" style={{ overflow: 'hidden' }}>
-              <div style={{ position: 'relative', height: '280px' }}>
-                <Image 
-                  src="/project-apartment.png" 
-                  alt="Luxury Apartment Siliguri" 
-                  fill 
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  className="project-img"
-                />
-              </div>
+              <ProjectBlueprint type="tower" />
               <div style={{ padding: '2rem' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Siliguri</span>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Luxury Penthouse Apartment</h3>
@@ -366,16 +792,7 @@ export default function Home() {
 
             {/* Project 2 */}
             <div className="glass-card" style={{ overflow: 'hidden' }}>
-              <div style={{ position: 'relative', height: '280px' }}>
-                <Image 
-                  src="/project-hotel.png" 
-                  alt="Hotel Project Gangtok" 
-                  fill 
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  className="project-img"
-                />
-              </div>
+              <ProjectBlueprint type="hotel" />
               <div style={{ padding: '2rem' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Gangtok</span>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Himalayan Boutique Resort</h3>
@@ -391,16 +808,7 @@ export default function Home() {
 
             {/* Project 3 */}
             <div className="glass-card" style={{ overflow: 'hidden' }}>
-              <div style={{ position: 'relative', height: '280px' }}>
-                <Image 
-                  src="/project-villa.png" 
-                  alt="Villa Project North Bengal" 
-                  fill 
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  className="project-img"
-                />
-              </div>
+              <ProjectBlueprint type="villa" />
               <div style={{ padding: '2rem' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>North Bengal</span>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 500, margin: '0.5rem 0 1rem 0', fontFamily: 'var(--font-sans)', color: '#fff' }}>Modern Tea Estate Villa</h3>
@@ -418,7 +826,7 @@ export default function Home() {
       </section>
 
       {/* 4. SERVICE AREAS SECTION (Interactive SVG Map) */}
-      <section id="services" className="section" style={{ backgroundColor: '#0d0d0d', borderTop: '1px solid var(--border-light)' }}>
+      <section id="services" className="section" style={{ backgroundColor: '#0d0d0d', borderTop: '1px solid var(--border-light)', position: 'relative', zIndex: 5 }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>Operational Scope</span>
@@ -456,10 +864,10 @@ export default function Home() {
                 {/* Background decorative grid */}
                 <path d="M 0 10 L 100 10 M 0 30 L 100 30 M 0 50 L 100 50 M 0 70 L 100 70 M 0 90 L 100 90 M 10 0 L 10 100 M 30 0 L 30 100 M 50 0 L 50 100 M 70 0 L 70 100 M 90 0 L 90 100" stroke="rgba(255,255,255,0.02)" strokeWidth="0.2"/>
                 
-                {/* Himalayan Mountains Abstract Outline (Sikkim Area) */}
+                {/* Himalayan Mountains Abstract Outline */}
                 <path d="M 10 40 L 25 20 L 40 35 L 55 10 L 70 30 L 85 15 L 95 35" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                 
-                {/* Region Boundary (Abstract) */}
+                {/* Region Boundary */}
                 <path d="M 25 15 Q 50 5 75 15 T 90 45 T 75 85 T 45 95 T 15 75 T 25 15 Z" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.8" strokeDasharray="2 2"/>
                 
                 {/* Service Area Connections */}
@@ -559,7 +967,7 @@ export default function Home() {
       </section>
 
       {/* 5. LEAD FORM SECTION */}
-      <section id="contact" className="section" style={{ backgroundColor: '#0a0a0a' }}>
+      <section id="contact" className="section" style={{ backgroundColor: '#0a0a0a', position: 'relative', zIndex: 5 }}>
         <div className="container" style={{ maxWidth: '750px' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>Consultation</span>
@@ -711,7 +1119,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CSS for order adjustments on mobile */}
+      {/* CSS for adjustments */}
       <style jsx>{`
         .product-viewport {
           scroll-margin-top: 5rem;
@@ -725,9 +1133,6 @@ export default function Home() {
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
-        .glass-card:hover .project-img {
-          transform: scale(1.05);
-        }
         @media (max-width: 768px) {
           .order-mobile-1 {
             order: 1 !important;
@@ -739,7 +1144,8 @@ export default function Home() {
             min-height: auto !important;
           }
           .product-image-container {
-            height: 300px !important;
+            height: auto !important;
+            min-height: 350px !important;
           }
         }
       `}</style>
