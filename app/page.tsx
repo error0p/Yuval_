@@ -1,67 +1,62 @@
 'use client';
 
 import Link from 'next/link';
+import { 
+  HoverSlider, 
+  HoverSliderImage, 
+  HoverSliderImageWrap, 
+  TextStaggerHover, 
+  useHoverSliderContext 
+} from '@/components/ui/animated-slideshow';
 
-// Simplified vector blueprints for Home Page Teasers
-function VectorTeaser({ type }: { type: 'upvc' | 'grill' | 'net' | 'hanger' }) {
+const SLIDES = [
+  {
+    id: "upvc",
+    title: "uPVC Windows & Doors",
+    description: "German-engineered multi-chamber insulation profiles optimized for mountain storm wind loads and climate weatherproofing.",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+    link: "/products/upvc",
+  },
+  {
+    id: "invisible-grills",
+    title: "Invisible Grills",
+    description: "High-tensile SS 316 marine-grade cable safety systems that secure windows and balconies invisibly without compromising views.",
+    imageUrl: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop",
+    link: "/products/invisible-grills",
+  },
+  {
+    id: "pleated-nets",
+    title: "Pleated Mosquito Nets",
+    description: "Architectural pleated screens that slide smoothly along guide tracks and fold away into slim profiles when not in use.",
+    imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop",
+    link: "/products/pleated-nets",
+  },
+  {
+    id: "ceiling-hangers",
+    title: "Ceiling Cloth Hangers",
+    description: "Double-rod ceiling pulley elevators designed to dry clothes out of sight and maximize balcony usable floor space.",
+    imageUrl: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop",
+    link: "/products/ceiling-hangers",
+  },
+];
+
+function ActiveProductDetails() {
+  const { activeSlide } = useHoverSliderContext();
+  const currentSlide = SLIDES[activeSlide] || SLIDES[0];
+
   return (
-    <div style={{
-      width: '100%',
-      height: '350px',
-      background: '#111',
-      borderRadius: '8px',
-      border: '1px solid rgba(255, 255, 255, 0.05)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
-      <div className="arch-grid" />
-      <svg viewBox="0 0 300 200" style={{ width: '80%', height: '80%', zIndex: 2 }}>
-        {type === 'upvc' && (
-          <g>
-            <rect x="80" y="30" width="140" height="140" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
-            <rect x="90" y="40" width="55" height="120" fill="none" stroke="var(--accent)" strokeWidth="1" />
-            <rect x="155" y="40" width="55" height="120" fill="none" stroke="var(--accent)" strokeWidth="1" />
-            <path d="M 80 100 L 90 100 M 210 100 L 220 100" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-            <circle cx="150" cy="100" r="8" fill="none" stroke="var(--accent)" strokeWidth="0.8" strokeDasharray="2 2" />
-            <text x="150" y="103" fill="var(--accent)" fontSize="8" textAnchor="middle">uPVC</text>
-          </g>
-        )}
-
-        {type === 'grill' && (
-          <g>
-            <rect x="50" y="30" width="200" height="140" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-            {[70, 90, 110, 130, 150, 170, 190, 210, 230].map(x => (
-              <line key={x} x1={x} y1="30" x2={x} y2="170" stroke="var(--accent)" strokeWidth="0.8" opacity="0.6" />
-            ))}
-            <rect x="50" y="110" width="200" height="60" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-            <text x="150" y="90" fill="#fff" fontSize="8" textAnchor="middle" letterSpacing="0.1em">INVISIBLE SHIELD</text>
-          </g>
-        )}
-
-        {type === 'net' && (
-          <g>
-            <rect x="70" y="30" width="160" height="140" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
-            <path d="M 70 40 L 85 160 L 100 40 L 115 160 L 130 40 L 145 160 L 160 40" fill="none" stroke="var(--accent)" strokeWidth="1.2" opacity="0.7" />
-            <line x1="160" y1="30" x2="160" y2="170" stroke="#fff" strokeWidth="2" />
-            <text x="150" y="100" fill="var(--accent)" fontSize="8" textAnchor="middle" transform="rotate(-90, 150, 100)">PLEATED MESH</text>
-          </g>
-        )}
-
-        {type === 'hanger' && (
-          <g>
-            <line x1="60" y1="40" x2="240" y2="40" stroke="rgba(255,255,255,0.2)" strokeWidth="3" />
-            <circle cx="100" cy="40" r="8" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-            <circle cx="200" cy="40" r="8" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-            <line x1="80" y1="110" x2="220" y2="110" stroke="var(--accent)" strokeWidth="2.5" />
-            <line x1="100" y1="40" x2="100" y2="110" stroke="#888" strokeWidth="0.8" />
-            <line x1="200" y1="40" x2="200" y2="110" stroke="#888" strokeWidth="0.8" />
-            <text x="150" y="90" fill="#fff" fontSize="8" textAnchor="middle">PULLEY SYSTEM</text>
-          </g>
-        )}
-      </svg>
+    <div style={{ marginTop: '2.5rem', minHeight: '120px', display: 'flex', flexDirection: 'column', gap: '1.5rem', animation: 'fadeIn 0.4s ease-out' }} key={activeSlide}>
+      <p style={{ fontSize: '1rem', lineHeight: '1.7', color: '#aaa', maxWidth: '450px' }}>
+        {currentSlide.description}
+      </p>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <Link href={currentSlide.link} className="btn btn-primary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
+          Explore Engineering
+        </Link>
+        <Link href="/contact" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
+          Get Quote
+        </Link>
+      </div>
     </div>
   );
 }
@@ -182,102 +177,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. PRODUCTS TEASERS SECTION */}
-      <section id="products" className="section" style={{ position: 'relative', zIndex: 5 }}>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
+      {/* 2. PRODUCTS SHOWCASE (Interactive Apple-style Hover Slider) */}
+      <section id="products" className="section" style={{ position: 'relative', zIndex: 5, backgroundColor: '#0d0d0d' }}>
+        <div className="container">
           
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>Engineering Showroom</span>
             <h2 style={{ fontSize: 'calc(2rem + 0.5vw)', fontWeight: 400, marginTop: '1rem' }}>Our Architectural Solutions</h2>
           </div>
 
-          {/* Product 1: uPVC */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+          <HoverSlider className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[500px]">
+            {/* Left Column: Titles list & active description */}
             <div>
-              <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>uPVC Windows & Doors</span>
-              <h3 style={{ fontSize: 'calc(1.6rem + 0.8vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)', lineHeight: '1.2' }}>
-                Built for Light. Engineered for Living.
-              </h3>
-              <p style={{ marginBottom: '2.5rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#aaa' }}>
-                Experience German-engineered precision with high-performance uPVC profile systems. Providing advanced thermal insulation, superior sound dampening, and elegant minimalist aesthetics that maximize natural day-lighting in your home.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link href="/products/upvc" className="btn btn-primary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Explore Engineering
-                </Link>
-                <Link href="/contact" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Get Quote
-                </Link>
+              <div className="flex flex-col space-y-4">
+                {SLIDES.map((slide, index) => (
+                  <TextStaggerHover
+                    key={slide.id}
+                    index={index}
+                    className="cursor-pointer text-4xl lg:text-5xl font-bold uppercase tracking-tighter text-[#fff]"
+                    text={slide.title}
+                  />
+                ))}
               </div>
+              
+              <ActiveProductDetails />
             </div>
-            <VectorTeaser type="upvc" />
-          </div>
 
-          {/* Product 2: Invisible Grills */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-            <VectorTeaser type="grill" />
-            <div>
-              <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>Invisible Grills</span>
-              <h3 style={{ fontSize: 'calc(1.6rem + 0.8vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)', lineHeight: '1.2' }}>
-                Protection You Barely Notice.
-              </h3>
-              <p style={{ marginBottom: '2.5rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#aaa' }}>
-                Secure your high-rise balconies and windows without compromising the beautiful views of Siliguri or the hills. Crafted from marine-grade 316 stainless steel tensile cables sheathed in heavy-duty nylon, these grills offer uncompromising safety.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link href="/products/invisible-grills" className="btn btn-primary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Explore Engineering
-                </Link>
-                <Link href="/contact" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Get Quote
-                </Link>
-              </div>
+            {/* Right Column: Slide images */}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <HoverSliderImageWrap style={{ width: '100%', maxWidth: '500px', height: '380px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                {SLIDES.map((slide, index) => (
+                  <div key={slide.id} style={{ width: '100%', height: '100%' }}>
+                    <HoverSliderImage
+                      index={index}
+                      imageUrl={slide.imageUrl}
+                      src={slide.imageUrl}
+                      alt={slide.title}
+                      className="size-full object-cover"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </div>
+                ))}
+              </HoverSliderImageWrap>
             </div>
-          </div>
-
-          {/* Product 3: Pleated Mosquito Nets */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-            <div>
-              <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>Pleated Mosquito Nets</span>
-              <h3 style={{ fontSize: 'calc(1.6rem + 0.8vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)', lineHeight: '1.2' }}>
-                Fresh Air Without Compromise.
-              </h3>
-              <p style={{ marginBottom: '2.5rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#aaa' }}>
-                Enjoy the fresh mountain breeze of Sikkim or the cool evening air of North Bengal completely bug-free. Our high-grade architectural-style pleated mosquito nets slide effortlessly, folding away neatly into ultra-slim frames when not in use.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link href="/products/pleated-nets" className="btn btn-primary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Explore Engineering
-                </Link>
-                <Link href="/contact" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Get Quote
-                </Link>
-              </div>
-            </div>
-            <VectorTeaser type="net" />
-          </div>
-
-          {/* Product 4: Ceiling Cloth Hangers */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-            <VectorTeaser type="hanger" />
-            <div>
-              <span style={{ fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 500 }}>Ceiling Cloth Hangers</span>
-              <h3 style={{ fontSize: 'calc(1.6rem + 0.8vw)', fontWeight: 400, marginTop: '1rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)', lineHeight: '1.2' }}>
-                Utility Made Beautiful.
-              </h3>
-              <p style={{ marginBottom: '2.5rem', fontSize: '0.95rem', lineHeight: '1.7', color: '#aaa' }}>
-                Reclaim your luxury balcony space. Our ceiling-mounted, manual pulley-operated double-pole drying hangers are designed to elevate clothes dry-line to the ceiling, keeping laundry completely out of sight and maximizing functional floor area.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <Link href="/products/ceiling-hangers" className="btn btn-primary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Explore Engineering
-                </Link>
-                <Link href="/contact" className="btn btn-secondary" style={{ padding: '0.8rem 1.6rem', fontSize: '0.8rem' }}>
-                  Get Quote
-                </Link>
-              </div>
-            </div>
-          </div>
+          </HoverSlider>
 
         </div>
       </section>
