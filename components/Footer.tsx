@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 export default function Footer() {
@@ -30,20 +28,20 @@ export default function Footer() {
         <div>
           <h4 style={{ color: '#fff', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 500 }}>Products</h4>
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-            <li><Link href="/products/upvc" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">uPVC Windows & Doors</Link></li>
-            <li><Link href="/products/invisible-grills" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Invisible Grills</Link></li>
-            <li><Link href="/products/pleated-nets" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Pleated Mosquito Nets</Link></li>
-            <li><Link href="/products/ceiling-hangers" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Ceiling Cloth Hangers</Link></li>
+            <li><Link href="#upvc" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">uPVC Windows & Doors</Link></li>
+            <li><Link href="#grill" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Invisible Grills</Link></li>
+            <li><Link href="#net" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Pleated Mosquito Nets</Link></li>
+            <li><Link href="#hanger" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Ceiling Cloth Hangers</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 style={{ color: '#fff', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 500 }}>Quick Links</h4>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-            <li><Link href="/projects" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Projects Portfolio</Link></li>
-            <li><Link href="/about" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">About Company</Link></li>
-            <li><Link href="/service-areas" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Service Areas</Link></li>
-            <li><Link href="/contact" style={{ color: '#888', textDecoration: 'none', fontSize: '0.9rem', transition: '0.2s' }} className="footer-link">Free Consultation</Link></li>
+          <h4 style={{ color: '#fff', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 500 }}>Service Areas</h4>
+          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem', color: '#888', fontSize: '0.9rem', fontWeight: 300 }}>
+            <li>Siliguri</li>
+            <li>Gangtok (Sikkim)</li>
+            <li>North Bengal</li>
+            <li>Dooars</li>
           </ul>
         </div>
 
@@ -91,14 +89,6 @@ export default function Footer() {
         </Link>
       </div>
 
-      <style jsx>{`
-        :global(.footer-link:hover) {
-          color: var(--accent) !important;
-        }
-        :global(.admin-link:hover) {
-          color: #888 !important;
-        }
-      `}</style>
     </footer>
   );
 }
